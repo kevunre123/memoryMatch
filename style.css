@@ -1,0 +1,109 @@
+body{
+    min-height: 100vh;
+    min-width: 100vw;
+    background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='40' height='40' patternTransform='scale(2) rotate(0)'><rect x='0' y='0' width='100%' height='100%' fill='hsla(240,6.7%,17.6%,1)'/><path d='M15 5h10v30H15zM35-5V5H5V-5zM35 35v10H5V35zM35-15h10v30H35zM55 15v10H25V15zM15 15v10h-30V15zM35 25h10v30H35zM-5 25H5v30H-5zM-5-15H5v30H-5z'  stroke-width='1' stroke='hsla(47,80.9%,61%,1)' fill='none'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,0)' fill='url(%23a)'/></svg>");
+    /* center center = position horizontally and then vertically */
+    background-position: center center;
+    /* scales image to cover the area */
+    background-size: cover;
+    color:rgb(5, 4, 4)
+}
+
+h1 {
+    color:rgb(255, 230, 0);
+    text-align: center;
+    font-weight: 700;
+    font-size: 55px;
+}
+
+p{
+    text-align: center;
+    font-size: 33px;
+    font-weight: bold;
+    color: #faf60b;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+}
+
+.actions button {
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: rgb(11, 189, 50);
+    color: rgb(255, 255, 255);
+}
+
+.grid-container {
+    /* activate grid layer */
+    display: grid;
+    /* horizontally centers grid items within container */
+    justify-content: center;
+    /* grid gap added to avoid clutter or cramped look */
+    grid-gap: 16px;
+    /* creates 6 rows which are 140px wide */
+    grid-template-columns: repeat(6, 140px);
+    /* creates 2 rows with calculated heights (140/2 = 70 x 3 = 210px height, done for aspect ratio of cards*/
+    grid-template-rows: repeat(2, calc(140px / 2 * 3));
+}
+
+.card {
+    height: calc(140px / 2 * 3);
+    width: 140px;
+    border-radius: 10px;
+    background-color: aqua;
+    /* makes it possible to absolutely position child elements (front and back of card for flipping) */
+    position: relative;
+    transform-style: preserve-3d;
+    transition: all 0.5s ease-in-out;
+    border: 1px solid rgb(36, 220, 233);
+    box-shadow: 0 0 10px black;
+}
+
+.front-image {
+
+    width: 140px;
+    height:210px;  
+    
+    border-radius: 10px;
+    /* width: 60px;
+    height: 60px; */
+}
+
+.card.flipped {
+    /* flip the card by rotating it on y axis */
+    transform: rotateY(180deg);
+}
+
+.front, .back {
+    backface-visibility: hidden;
+    /* positions the front and back on top of one another within .card container */
+    position: absolute;
+    border-radius: 10px;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+
+}
+
+.card .front {
+    display: flex;
+    /* center icons/images horizontally and vertically */
+    justify-content: center;
+    align-items: center;
+    /* rotation added to flip cards FACE DOWN by DEFAULT */
+    transform: rotateY(180deg);
+}
+
+.card .back {
+    background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='20' height='20' patternTransform='scale(2) rotate(0)'><rect x='0' y='0' width='100%' height='100%' fill='hsla(240,6.7%,17.6%,1)'/><path d='M10-10L20 0v10L10 0zM20 0L10-10V0l10 10zm0 10L10 0v10l10 10zm0 10L10 10v10l10 10zM0 20l10-10v10L0 30zm0-10L10 0v10L0 20zM0 0l10-10V0L0 10z'  stroke-width='1' stroke='hsla(47,80.9%,61%,1)' fill='none'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,0)' fill='url(%23a)'/></svg>");
+    /* center center = position horizontally and then vertically */
+    background-position: center center;
+    /* scales image to cover the area */
+    background-size: cover;
+    /* prevents back of the element from showing during flip */
+    backface-visibility: hidden;
+}
+
